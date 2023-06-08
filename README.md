@@ -1,35 +1,35 @@
 # venturedive_api
 
-##Clone Github repo in a linux environment:
+## Clone Github repo in a linux environment:
 ```console
 git clone https://github.com/hussainmahmood/venturedive_api
 ```
 
-##Move into directory
+## Move into directory
 ```console
 cd venturedive_api
 ```
 
-##Activate virtual environment
+## Activate virtual environment
 ```console
 source venv/bin/activate
 ```
 
-##(OR) Install dependencies
+## (OR) Install dependencies
 ```console
 pip install -r requirements.txt
 ```
 
-##Run migration
+## Run migration
 ```console
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-##Run server
+## Run server
 ```console
 python manage.py runserver
 ```
 
-##Test API endpoints on any API platform of your liking
+## Test API endpoints on any API platform of your liking
 
