@@ -1,31 +1,6 @@
-import os
-from django.contrib import admin
 from django.db import models
-from django.utils import timezone
-from django.db.models import Sum
-from django.contrib.postgres.fields import ArrayField
-from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as meow
 from django.contrib.auth.hashers import check_password, make_password
-from datetime import datetime, timedelta
-
-
-@deconstructible
-class path_and_rename(object):
-    def __init__(self, path):
-    	self.path = path
-
-    def __call__(self, instance, filename):
-    	if self.path == "img/cars/":
-    		sub_dir = f'{self.path}{instance.car.car_id}/'
-    	elif self.path == "img/tasks/":
-    		sub_dir = f'{self.path}{instance.car.car_id}/'
-    	elif self.path == "img/tasks_complete/":
-    		sub_dir = f'{self.path}{instance.car.car_id}/'
-    	elif self.path == "icons/":
-    		sub_dir = f'{self.path}'
-
-    	return os.path.join(sub_dir, filename)
 
 # Create your models here.
 
@@ -50,16 +25,9 @@ class User(models.Model):
 	def __str__(self):
 		return f"{self.first_name} {self.last_name}"
 
-	def __init__(self, *args, **kwargs):
-	    super(User, self).__init__(*args, **kwargs)
-	    self.initial_password = self.password
+	def encrypt(self):
+		self.password = make_password(self.password)
 
-	# def save(self, *args, **kwargs):
-	#     if not (check_password(self.password, self.initial_password) or self.password == self.initial_password) or self._state.adding:
-	#         self.password = make_password(self.password)
-	#     else:
-	#         self.password = self.initial_password
-	#     super(User, self).save(*args, **kwargs)
 
 	def authenticate(self, password=""):
 		if check_password(password, self.password):

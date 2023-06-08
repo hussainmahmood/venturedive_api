@@ -1,0 +1,4 @@
+argon2-cffi
+django-cors-headers
+djangorestframework
+pandas
